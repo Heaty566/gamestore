@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const {User, validate} = require('../models/user.model');
 const auth = require('../middleware/auth-user');
-const isAdmin = require('../middleware/auth-isAdmin');
+
 
 const express = require('express');
 const router = express.Router();
@@ -21,9 +21,6 @@ router.post("/register", async (req, res) => {
     res.send(_.pick(user, ["name", "phone", "username"]));
 });
 
-router.get("/me", isAdmin, (req, res) => {
-    res.send(req.body);
-});
 
 
 module.exports = router;

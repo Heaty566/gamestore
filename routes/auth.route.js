@@ -1,4 +1,5 @@
 const {User} = require('../models/user.model');
+const auth = require('../middleware/auth-user');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
@@ -7,6 +8,11 @@ const config = require('config');
 
 const  express = require('express');
 const router = express.Router();
+
+router.get("/me", auth, async (req, res) => {
+    const user = await User.findById(req.body._id);
+    res.send(user);
+});
 
 router.post("/login", async (req, res) => {
     const {error} = validate(req.body);
@@ -22,6 +28,7 @@ router.post("/login", async (req, res) => {
    
     res.header("x-auth-token", token).send(`login successfully`);
 });
+
 
 
 getToken = (value) => {
