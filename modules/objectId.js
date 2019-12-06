@@ -1,5 +1,5 @@
 const Joi = require('joi');
-Joi.objectId = require('joi')(Joi);
+Joi.objectId = require('joi-objectid')(Joi);
 
 checkId = (Id) => {
     const Schema = {

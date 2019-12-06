@@ -6,12 +6,12 @@ const isAdmin = require('../middleware/auth-isAdmin');
 const  {checkId} = require('../modules/objectId');
 const _ = require('lodash');
 
-router.get("/", isAdmin, (req, res) => {
+router.get("/", isAdmin, async (req, res) => {
     const genre = await Genre.find();
     res.send(genre);
 });
 
-router.get("/:id", isAdmin, (req, res) => {
+router.get("/:id", isAdmin, async(req, res) => {
     const {error} = checkId(req.params.id);
     if (error) res.status(404).send("The genre with the given Id was not found"); 
 
