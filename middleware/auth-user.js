@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     
     try {
         const decode = jwt.verify(token, config.get("myKey"));
-        req.body = decode;
+        req.body.userId = decode._id;
         next();
     } catch (err) {
         res.status(401).send("Invalid");

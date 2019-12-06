@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const {gameSchema} = require('../models/game.model');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -31,7 +32,7 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     cart: {
-        type: Number
+        type: [gameSchema]
     }
 });
 
@@ -43,7 +44,8 @@ validateUser = (user) => {
         phone: Joi.string().max(50).min(3).required(),
         username: Joi.string().max(50).min(3).required(),
         password: Joi.string().max(250).min(3).required(),
-        isAdmin: Joi.boolean()
+        isAdmin: Joi.boolean(),
+        cart:  Joi.array().items(Joi.required())
     }
 
     return Joi.validate(user, Schema);

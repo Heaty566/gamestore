@@ -21,8 +21,7 @@ const gameSchema = new mongoose.Schema({
         default: 0
     },
     genre: {
-        type: genreSchema,
-        default: "free"
+        type: genreSchema
     }
 });
 
