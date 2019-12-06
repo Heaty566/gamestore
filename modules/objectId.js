@@ -3,7 +3,7 @@ Joi.objectId = require('joi-objectid')(Joi);
 
 checkId = (Id) => {
     const Schema = {
-        _id: Joi.objectId().require()
+        _id: Joi.objectId()
     }
 
     return Joi.validate(Id);

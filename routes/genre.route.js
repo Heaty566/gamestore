@@ -23,7 +23,7 @@ router.post("/", isAdmin, async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
-    let genre = new Genre(_.pick(req.body)); 
+    let genre = new Genre(_.pick(req.body, ["name"])); 
     
     genre = await genre.save();
     res.send(genre);
@@ -37,8 +37,9 @@ router.put("/:id", isAdmin, async (req, res) =>{
     if (error1) return res.status(400).send(error.details[0].message);
 
     let genre = await Genre.findById(req.params.id);
-    genre = _.pick(req.body, ["name"]);
     genre = await genre.save();
+    genre = _.pick(req.body, ["name"]);
+   
 
     res.send(genre);
 });
