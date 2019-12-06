@@ -1,12 +1,13 @@
 const Joi = require('joi');
 Joi.objectId = require('joi')(Joi);
 
-CheckId = (Id) => {
+checkId = (Id) => {
     const Schema = {
-        _id: Joi.objectId()
+        _id: Joi.objectId().require()
     }
 
     return Joi.validate(Id);
 };
 
-module.exports.CheckId = CheckId;
+module.exports.checkId = checkId;
+

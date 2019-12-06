@@ -6,7 +6,6 @@ module.exports = (req, res, next) => {
     
     try {
         const decode = jwt.verify(token, config.get("myKey"));
-        req.body = decode;
         if (!decode.isAdmin)  throw new Error("Invalid");
         next();
     } catch (err) {
